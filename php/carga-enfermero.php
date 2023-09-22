@@ -77,8 +77,26 @@ if (!empty($_POST['enviar'])) {
                             $cargaPersona = mysqli_query($conn, $sqlpersona);
 
                             if ($cargaPersona) {
-                                echo '<div class="alerta exito">Se cargó el enfermero</div>';
+                                $sql11 = "SELECT MAX(id_enfermero) AS id_enfermero FROM enfermeros";
+                                $ejec11 = mysqli_query($conn, $sql11);
+                                $fila5 = mysqli_fetch_assoc($ejec11);
+                                $id_enfermero = $fila5['id_enfermero'];
 
+                                $areas = $_POST['areas'];
+                                foreach ($areas as $ar) {
+                                    // $sql = "SELECT precio FROM servicios WHERE id_servicio = '$servi'";
+                                    // $ejec = mysqli_query($conn, $sql);
+                                    // $row = mysqli_fetch_assoc($ejec);
+                                    // $precio_servicio = $row['precio'];
+
+                                    $sql12 = "INSERT INTO areas_enfermeros (id_area,id_enfermero) VALUES ('$ar','$id_enfermero')";
+                                    $carga_area = mysqli_query($conn, $sql12);
+                                }
+                                if ($carga_area) {
+                                    echo '<div class="alerta exito">Se cargó el enfermero</div>';
+                                } else {
+                                    echo '<div class="alerta error">Ups, ocurrió un error al cargar al enfermero</div>';
+                                }
                             } else {
                                 echo '<div class="alerta error">Error al cargar el enfermero</div>';
                             }

@@ -54,19 +54,19 @@
 
             <select name="especialidad" id="especialidad" onfocus="foco(this)" required>
                 <option value="" disabled selected>Seleccione su Especialidad</option>
-                <option value="sin-especificar">Sin Especificar</option>
-                <option value="enfermeria_general">Enfermería General</option>
-                <option value="enfermeria_pediatria">Enfermería Pediátrica</option>
-                <option value="enfermeria_obstetricia">Enfermería Obstétrica</option>
-                <option value="enfermeria_psiquiatria">Enfermería Psiquiátrica</option>
-                <option value="enfermeria_gerontologia">Enfermería Gerontológica</option>
-                <option value="enfermeria_cardiologia">Enfermería en Cardiología</option>
-                <option value="enfermeria_oncologia">Enfermería en Oncología</option>
-                <option value="enfermeria_neonatologia">Enfermería en Neonatología</option>
-                <option value="enfermeria_quirurgica">Enfermería Quirúrgica</option>
-                <option value="enfermeria_urgencias">Enfermería de Urgencias</option>
+                <option value="Sin Especificar">Sin Especificar</option>
+                <option value="Enfermeria General">Enfermería General</option>
+                <option value="Enfermeria Pediatria">Enfermería Pediátrica</option>
+                <option value="Enfermeria Obstetricia">Enfermería Obstétrica</option>
+                <option value="Enfermeria Psiquiatria">Enfermería Psiquiátrica</option>
+                <option value="Enfermeria Gerontologia">Enfermería Gerontológica</option>
+                <option value="Enfermeria Cardiologia">Enfermería en Cardiología</option>
+                <option value="Enfermeria Oncologia">Enfermería en Oncología</option>
+                <option value="Enfermeria Neonatologia">Enfermería en Neonatología</option>
+                <option value="Enfermeria Quirurgica">Enfermería Quirúrgica</option>
+                <option value="Enfermeria Urgencias">Enfermería de Urgencias</option>
             </select>
-            <select name="area" required>
+            <!-- <select name="area" required>
                 <option value="" disabled selected>Área</option>
                 <?php
                 // imprimo en una lista los clientes
@@ -77,8 +77,24 @@
                         <?php echo $resFila['nombre_area']; ?>
                     </option>
                 <?php } ?>
-            </select>
-            <input type="submit" name="enviar" value="Cargar Enfermero">
+            </select> -->
+
+            <div class='checkbox'>
+                <?php
+                // imprimo en una lista los servicios
+                $ars = "SELECT * FROM areas";
+                $resultado = mysqli_query($conn, $ars);
+                while ($row = mysqli_fetch_assoc($resultado)) { ?>
+                    <label>
+                        <?php
+                        $nombre_area = $row['nombre_area'];
+                        echo $nombre_area;
+                        ?>
+                        <input type="checkbox" name="areas[]" value="<?php echo $row['id_area']; ?>">
+                    </label>
+                <?php } ?>
+            </div>
+            <input type="submit" name="enviar" value="Cargar Enfermero" onclick="comprobarChecks(event);">
         </form>
     </div>
     <script src="\olimpiadas2023\config\js.js"> </script>

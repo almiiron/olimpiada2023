@@ -84,18 +84,18 @@ function validaambos(e) {
     }
 }
 
-// function comprobarChecks(event) {
-//     var checkbox = document.getElementsByName('servicio[]');
-//     var contador = 0;
-//     for (var i = 0; i < checkbox.length; i++) {
-//         if (checkbox[i].checked)
-//             contador++
-//     }
-//     if (contador == 0) {
-//         alert("Seleccione al menos un servicio");
-//         event.preventDefault();
-//     }
-// }
+function comprobarChecks(event) {
+    var checkbox = document.getElementsByName('areas[]');
+    var contador = 0;
+    for (var i = 0; i < checkbox.length; i++) {
+        if (checkbox[i].checked)
+            contador++
+    }
+    if (contador == 0) {
+        alert("Seleccione al menos un área");
+        event.preventDefault();
+    }
+}
 
 
 // function confirmacion(e) {
@@ -109,7 +109,7 @@ function validaambos(e) {
 
 
 function ocultarDiv() {
-    var select = document.getElementById("opciones");
+    var select = document.getElementById("estado");
     var div1 = document.getElementById("miDiv1");
     var div2 = document.getElementById("miDiv2");
     // var div3 = document.getElementById("miDiv3");
@@ -119,9 +119,9 @@ function ocultarDiv() {
     div1.style.display = "none";
     div2.style.display = "none";
 
-    if (select.value === "1") {
+    if (select.value === "Consciente") {
         div1.style.display = "block";
-    } else if (select.value === "2") {
+    } else if (select.value === "Inconsciente") {
         div2.style.display = "block";
     } 
   
